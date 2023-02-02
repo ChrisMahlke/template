@@ -7,9 +7,23 @@
     <meta property="og:image" content="public/thumbnail.jpg" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="icon" href="public/favicon.ico">
+
+    <script type="module" src="https://js.arcgis.com/calcite-components/1.0.3/calcite.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.3/calcite.css" />
 </head>
 
 <body>
-    <div id="viewDiv"></div>
+    <div id="viewDiv">
+        <calcite-card>
+            <span slot="title">City-owned golf courses</span>
+            <span slot="subtitle">Department of Recreation - Municipality of Acme</span>
+            <calcite-chip slot="footer-start" value="calcite chip" kind="brand" icon="clock-forward">
+                Recent
+            </calcite-chip>
+            <calcite-chip slot="footer-end" value="calcite chip" icon="walking">
+                Recreation
+            </calcite-chip>
+        </calcite-card>
+    </div>
 </body>
 </html>

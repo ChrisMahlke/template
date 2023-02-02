@@ -81,6 +81,7 @@
   },
   "dependencies": {
     "@arcgis/core": "^4.24.7",
+    "@esri/calcite-components": "^1.0.3",
     "classnames": "^2.3.1",
     "helper-toolkit-ts": "^1.1.14",
     "shortid": "^2.2.16",
