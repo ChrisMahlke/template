@@ -1,16 +1,15 @@
 const path = require('path');
-const package = require('./package.json');
+const pkg = require('./package.json');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports =  (env, options)=> {
 
-    const devMode = options.mode === 'development' ? true : false;
+    const devMode = options.mode === 'development';
 
     process.env.NODE_ENV = options.mode;
 
@@ -71,17 +70,17 @@ module.exports =  (env, options)=> {
             new HtmlWebpackPlugin({
                 template: './public/index.html',
                 filename: 'index.html',
-                title: package.name,
+                title: pkg.name,
                 meta: {
-                    title: package.name,
-                    description: package.description,
-                    author: package.author,
-                    keywords: Array.isArray(package.keywords) 
-                        ? package.keywords.join(',') 
+                    title: pkg.name,
+                    description: pkg.description,
+                    author: pkg.author,
+                    keywords: Array.isArray(pkg.keywords)
+                        ? pkg.keywords.join(',')
                         : undefined,
-                    'og:title': package.name,
-                    'og:description': package.description,
-                    'og:url': package.homepage,
+                    'og:title': pkg.name,
+                    'og:description': pkg.description,
+                    'og:url': pkg.homepage,
                 },
                 minify: {
                     html5                          : true,
@@ -98,8 +97,7 @@ module.exports =  (env, options)=> {
                     useShortDoctype                : true
                 }
             }),
-            !devMode ? new CleanWebpackPlugin() : false,
-            !devMode ? new BundleAnalyzerPlugin() : false
+            !devMode ? new CleanWebpackPlugin() : false
         ].filter(Boolean),
         optimization: {
             splitChunks: {
